@@ -1,3 +1,9 @@
+logging:
+  level:
+    root: warn
+    home: debug
+    org.springframework: warn
+
 server:
   port: 8076
 
@@ -5,9 +11,10 @@ spring:
   security:
     oauth2:
       resourceserver:
-        jwt:
-          jwk-set-uri: http://localhost:8081/certs
-#          issuer-uri: http://localhost:8080
-#          issuer-uri: https://connect.test.surfconext.nl/oidc/.well-known/openid-configuration
-
+        opaque-token:
+          introspection-uri: http://localhost:8081/introspect
+          client-id: client
+          client-secret: secret
+#        jwt:
+#          jwk-set-uri: http://localhost:8081/certs
 

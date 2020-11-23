@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 
@@ -18,17 +17,18 @@ import static org.hamcrest.Matchers.equalTo;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PersonEndpointTest extends AbstractIntegrationTest {
+public class OfferingEndpointTest {//extends AbstractIntegrationTest {
 
     @Test
-    void persons() throws Exception {
+    void offerings() throws NoSuchProviderException, NoSuchAlgorithmException, JOSEException, JsonProcessingException {
         given()
                 .when()
-                .auth().oauth2(opaqueAccessToken())
-                .get("/persons/1")
+                .get("/offerings/1")
                 .then()
                 .statusCode(SC_OK)
-                .body("mail", equalTo("vandamme.mcw@universiteitvanharderwijk.nl"));
+                .body("abbreviation", equalTo("Test-INFOMQNM-20FS"));
+
+
     }
 
 }
